@@ -2,27 +2,27 @@ package wire;
 
 // A request to Transfer a message from a server.
 message TransferMessage {
-  required string author = 1;
-	required string name   = 2;
-  optional bool   data   = 3;
+    required string author = 1;
+    required string name   = 2;
+    optional bool   data   = 3;
 }
 
 // A request to Transfer a list of messages from
 // a server.
 message TransferMessageList {
-	required string author       = 1;
-	required uint64 last_updated = 2;
+    required string author       = 1;
+    required uint64 last_updated = 2;
 }
 
 // A Description of a message, to be used as an
 // alert.
 message MessageDescription {
-	required string location = 1;
-	required string name     = 2;
-	optional uint64 nonce    = 3;
+    required string location = 1;
+    required string name     = 2;
+    optional uint64 nonce    = 3;
 }
 
 // A Message List.
 message MessageList {
-	required uint64 length = 1;
+    required uint64 length = 1;
 }

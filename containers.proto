@@ -2,46 +2,46 @@ package wire;
 
 // This message Header is required for all AirDispatch Messages for Authenticity
 message Header {
-	required bytes  from_addr = 1; // From Address Fingerprint
-	repeated bytes  to_addr   = 2; // To Address Fingerprint
-	required uint64 timestamp = 3;
+    required bytes  from_addr = 1; // From Address Fingerprint
+    repeated bytes  to_addr   = 2; // To Address Fingerprint
+    required uint64 timestamp = 3;
 
-	optional string alias = 4;
-	optional bytes encryption_key = 5;
+    optional string alias = 4;
+    optional bytes encryption_key = 5;
 }
 
 // SignedMessage Contains a signed chunk of data, and that message signature
 message SignedMessage {
-	required bytes     data         = 1; // The data bytes are generally from a container message.
-	repeated Signature signature    = 2;
+    required bytes     data         = 1; // The data bytes are generally from a container message.
+    repeated Signature signature    = 2;
 
-	optional bytes     signing_func = 3; // Future proof messages...
+    optional bytes     signing_func = 3; // Future proof messages...
 }
 message Signature {
-	required bytes r            = 1;
-	required bytes s            = 2;
-	optional bytes signing_key  = 3;
+    required bytes r            = 1;
+    required bytes s            = 2;
+    optional bytes signing_key  = 3;
 }
 
 // EncryptedMessage Contains an encrypted chunk of data, and the keys used to
 // generate the encrypted data
 message EncryptedMessage {
-	required bytes data             = 1; // The data bytes are generally from a signed message.
-	repeated EncryptedHeader header = 2;
+    required bytes data             = 1; // The data bytes are generally from a signed message.
+    repeated EncryptedHeader header = 2;
 }
 
 message EncryptedHeader {
-	required bytes to_addr = 1;
-	required bytes key     = 2;
-	optional bytes enc_fun = 3;
+    required bytes to_addr = 1;
+    required bytes key     = 2;
+    optional bytes enc_fun = 3;
 }
 
 // Container has data from a message, and the standard AirDispatch
 // message header. It also contains the type of Message.
 message Container {
-	required Header header = 1;
-	required bytes  data   = 2;
-	required string type   = 3;
+    required Header header = 1;
+    required bytes  data   = 2;
+    required string type   = 3;
 }
 
 // Receiver Validations
