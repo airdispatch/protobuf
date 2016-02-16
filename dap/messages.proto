@@ -1,0 +1,58 @@
+// -------
+// Message Management
+// -------
+
+// Download Messages will return a list of all message
+// descriptions reived after `since`.
+message DownloadMessages {
+    optional uint64 since = 1;
+    optional bool context = 2;
+    optional bool sent    = 3;
+}
+
+// Publish Message will create a new message on the server
+// the server must send an alert to the addresses in the `To`
+// field if the `alert` field is `true`.
+message PublishMessage {
+    required bytes data        = 1;
+    repeated string to         = 2;
+    required string name       = 3;
+    optional bool alert        = 4;
+}
+
+// Update Message will update a message with name `name`, to
+// `data`.
+message UpdateMessage {
+    required string name = 1;
+    required bytes data  = 2;
+}
+
+// ---------
+// AD Data Messages
+// ---------
+
+// PublishDataMessage will take an encrypted data header, some metadata about
+// the data message, and publish it on the server.
+message PublishDataMessage {
+    required bytes  header = 1;
+    repeated string to     = 2;
+    required string name   = 3;
+    required uint64 length = 4;
+    required bytes  hash   = 5;
+}
+
+// ---------
+// Arbitrary Data Store
+// ---------
+
+// Data will alert the server to store `data` under the name
+// `key`.
+message Data {
+    required string key = 1;
+    required bytes data = 2;
+}
+
+// Get Data will return the data stored under `key`.
+message GetData {
+    required string key = 1;
+}
